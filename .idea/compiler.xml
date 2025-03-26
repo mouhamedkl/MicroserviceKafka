@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="apigateway" />
+        <module name="discovery" />
+        <module name="ConfigServer" />
+      </profile>
+      <profile name="Annotation profile for User" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="false">
+          <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/unknown/lombok-unknown.jar" />
+        </processorPath>
+        <module name="produit" />
+        <module name="User" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="apigateway" target="17" />
+      <module name="config-server" target="17" />
+      <module name="ConfigServer" target="17" />
+      <module name="discovery" target="17" />
+      <module name="produit" target="17" />
+      <module name="User" target="17" />
+      <module name="user-service" target="17" />
+      <module name="Users" target="17" />
+    </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="ConfigServer" options="-parameters" />
+      <module name="User" options="-parameters" />
+      <module name="Users" options="-parameters" />
+      <module name="apigateway" options="-parameters" />
+      <module name="config-server" options="-parameters" />
+      <module name="discovery" options="-parameters" />
+      <module name="produit" options="-parameters" />
+      <module name="user-service" options="-parameters" />
+    </option>
+  </component>
+</project>

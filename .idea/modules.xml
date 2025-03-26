@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/config-server/ConfigServer.iml" filepath="$PROJECT_DIR$/config-server/ConfigServer.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/MicroserviceKafka.iml" filepath="$PROJECT_DIR$/.idea/MicroserviceKafka.iml" />
+      <module fileurl="file://$PROJECT_DIR$/user-service/User.iml" filepath="$PROJECT_DIR$/user-service/User.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ApiGateway/apigateway.iml" filepath="$PROJECT_DIR$/ApiGateway/apigateway.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Discovery/discovery.iml" filepath="$PROJECT_DIR$/Discovery/discovery.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Produit/produit.iml" filepath="$PROJECT_DIR$/Produit/produit.iml" />
+    </modules>
+  </component>
+</project>

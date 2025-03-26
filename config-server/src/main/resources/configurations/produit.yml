@@ -1,0 +1,46 @@
+spring:
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: http://localhost:8080/realms/microservices
+          jwk-set-uri: http://localhost:8080/realms/microservices/protocol/openid-connect/certs
+  datasource:
+    url: jdbc:mysql://localhost:3306/produitdb_microservice?createDatabaseIfNotExist=true&useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
+    username: root
+    password:
+  kafka:
+    bootstrap-servers: localhost:9092
+    consumer:
+      group-id: my-group
+      auto-offset-reset: earliest
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQLDialect
+
+
+server:
+  port: 8085
+
+eureka:
+  instance:
+    hostname: localhost
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://${eureka.instance.hostname}:8761/eureka/
+
+keycloak:
+  auth-server-url: http://localhost:8080/auth
+  realm: microservices
+  resource: gateway-client
+  credentials:
+    secret: 0JjUfBvbz5yehMjgzdtC7TNEYDvfUkMG
