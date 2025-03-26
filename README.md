@@ -21,16 +21,16 @@ L'architecture du projet suit un modèle **microservices** avec les technologies
 - **Spring Cloud Gateway** pour servir d'API Gateway centralisée.
 - **Apache Kafka** pour gérer la communication asynchrone entre les microservices.
 - **Keycloak** pour l'authentification et l'autorisation des utilisateurs.
-- **PostgreSQL/MySQL** pour la gestion de la persistance des données.
+- **MySQL** pour la gestion de la persistance des données.
 
-![Architecture Diagram](path-to-architecture-diagram.png)
+[//]: # (![Architecture Diagram]&#40;path-to-architecture-diagram.png&#41;)
 
 ## Prérequis
 
 Avant de commencer, assurez-vous que les éléments suivants sont installés sur votre machine :
 
 - Java 17 ou version ultérieure
-- Maven ou Gradle
+- Maven 
 - Docker (facultatif, si vous voulez exécuter Keycloak ou Kafka en containers)
 - Kafka en fonctionnement (ou utilisez Docker pour le démarrer)
 - Keycloak (ou utilisez Docker pour démarrer un serveur Keycloak)
