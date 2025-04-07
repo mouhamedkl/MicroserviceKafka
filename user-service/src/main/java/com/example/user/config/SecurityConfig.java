@@ -7,12 +7,12 @@ import org.springframework.security.config.annotation.method.configuration.Enabl
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.oauth2.server.resource.authentication.JwtAuthenticationConverter;
 import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
 @EnableWebSecurity
 @EnableMethodSecurity
-@RequiredArgsConstructor
 public class SecurityConfig {
 
     private final JwtAuthConverter jwtAuthConverter;
@@ -24,6 +24,7 @@ public class SecurityConfig {
         http
                 .csrf().disable()
                 .authorizeHttpRequests()
+                .requestMatchers("/api/auth/**").permitAll()
                 .requestMatchers("/api/users/admin").hasRole("ADMIN")
                 .requestMatchers("/api/users/secured").hasRole("USER")
                 .anyRequest().authenticated();
@@ -39,4 +40,5 @@ public class SecurityConfig {
 
         return http.build();
     }
+
 }

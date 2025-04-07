@@ -29,11 +29,10 @@ L'architecture du projet suit un modèle **microservices** avec les technologies
 
 Avant de commencer, assurez-vous que les éléments suivants sont installés sur votre machine :
 
-- Java 17 ou version ultérieure
+- Java 17 
 - Maven 
-- Docker (facultatif, si vous voulez exécuter Keycloak ou Kafka en containers)
-- Kafka en fonctionnement (ou utilisez Docker pour le démarrer)
-- Keycloak (ou utilisez Docker pour démarrer un serveur Keycloak)
+- Kafka 
+- Keycloak 
 
 ## Description des Services
 
@@ -66,14 +65,3 @@ Avant de commencer, assurez-vous que les éléments suivants sont installés sur
 - **Communication asynchrone** entre les services via **Kafka**.
 - **Gestion centralisée des configurations** avec **Config Server**.
 - **Sécurisation des APIs** avec un mécanisme de sécurité intégré.
-
-## Démarrage du Projet
-
-### 1. **Démarrer les Services Kafka et Keycloak**
-
-Si vous utilisez Docker, vous pouvez démarrer Kafka et Keycloak avec les commandes suivantes :
-
-#### Kafka avec Docker
-
-```bash
-docker-compose -f docker/kafka-compose.yml up

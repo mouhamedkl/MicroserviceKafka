@@ -1,8 +1,9 @@
 package com.example.user.controller;
 
+import com.example.user.dto.UserRequest;
 import com.example.user.entities.User;
 import com.example.user.services.IUserService;
-import com.example.user.services.UserKafkaProducer;
+import com.example.user.services.KeycloakService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -18,11 +19,11 @@ import java.util.Optional;
 @RequestMapping("/api/users")
 public class UserController {
     private final IUserService iUserService;
+    private final KeycloakService keycloakService;
 
-    private final UserKafkaProducer kafkaProducer;
-    public UserController(IUserService iUserService, UserKafkaProducer kafkaProducer) {
+    public UserController(IUserService iUserService, KeycloakService keycloakService) {
         this.iUserService = iUserService;
-        this.kafkaProducer = kafkaProducer;
+        this.keycloakService = keycloakService;
     }
 
     @PostMapping("/add")
@@ -33,12 +34,16 @@ public class UserController {
         }
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Error adding user");
     }
-    @PostMapping("/send")
-    public String sendMessage(@RequestParam String message) {
-        kafkaProducer.sendMessage("user-topic", message);
-        return "Message envoyé à Kafka !";
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
+    @GetMapping("/allroles")
+    public List<String> getall() {
+        return keycloakService.getAllRoles();
     }
-
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
+    @PostMapping("/addrole")
+    public void addrole(@RequestBody UserRequest userRequest) {
+        keycloakService.addRealmRole(userRequest.getUsername());
+    }
     @GetMapping("/all")
     public ResponseEntity<List<User>> getAllUsers() {
         List<User> users = iUserService.getall();
@@ -82,22 +87,6 @@ public class UserController {
     @PreAuthorize("hasAuthority('ROLE_USER')")
     public String securedEndpoint() {
         return "Accessible uniquement aux utilisateurs avec le rôle USER";
-    }
-    @GetMapping("/me")
-    public String getUserInfo(@AuthenticationPrincipal Jwt jwt) {
-        Object roles = jwt.getClaims().get("resource_access.gateway-client");
-
-        if (roles != null && roles instanceof org.hibernate.mapping.Map) {
-            Map<String, Object> realmAccess = (Map<String, Object>) roles;
-            Object rolesList = realmAccess.get("roles");
-
-            if (rolesList != null && rolesList instanceof List) {
-                List<String> rolesListCast = (List<String>) rolesList;
-                return "User Info: " + jwt.getSubject() + ", Roles: " + rolesListCast;
-            }
-        }
-
-        return "User Info: " + jwt.getClaims() + " No roles found in realm_access.";
     }
 
     @GetMapping("/admin")

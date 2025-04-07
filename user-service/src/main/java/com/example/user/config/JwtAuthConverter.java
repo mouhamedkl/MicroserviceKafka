@@ -19,7 +19,7 @@ public class JwtAuthConverter implements Converter<Jwt, JwtAuthenticationToken> 
     private final JwtGrantedAuthoritiesConverter jwtGrantedAuthoritiesConverter =
             new JwtGrantedAuthoritiesConverter();
 
-    private static final String RESOURCE_ID = "gateway-client";
+    private static final String RESOURCE_ID = "gateway-client0";
 
     @Override
     public JwtAuthenticationToken convert(Jwt jwt) {

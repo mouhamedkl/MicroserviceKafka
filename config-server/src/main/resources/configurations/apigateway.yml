@@ -8,8 +8,8 @@ spring:
       client:
         registration:
           keycloak:
-            client-id: gateway-client
-            client-secret: 0JjUfBvbz5yehMjgzdtC7TNEYDvfUkMG
+            client-id: gateway-client0
+            client-secret: TBO4HZwfhHtUJDkpIGi9YFjdLUrsiE96
             scope: openid
             authorization-grant-type: authorization_code
             redirect-uri: "{baseUrl}/login/oauth2/code/{registrationId}"
@@ -28,6 +28,10 @@ spring:
             - name: RequestHeaderToRequestUri
               args:
                 name: Authorization
+        - id: auth
+          uri: http://localhost:8083
+          predicates:
+              - Path=/api/auth/**
         - id: produit
           uri: http://localhost:8085
           predicates:
@@ -44,7 +48,12 @@ eureka:
     fetchRegistry: true
     serviceUrl:
       defaultZone: http://${eureka.instance.hostname}:8761/eureka/
-
+keycloak:
+  server-url: http://localhost:8080
+  resource: gateway-client0
+  realm: microservices
+  client-id: gateway-client0
+  client-secret: TBO4HZwfhHtUJDkpIGi9YFjdLUrsiE96
 
 server:
   port: 8222

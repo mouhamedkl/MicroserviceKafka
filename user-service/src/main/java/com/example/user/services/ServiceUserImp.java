@@ -29,9 +29,11 @@ public class ServiceUserImp implements IUserService {
     public User updateuser(Long id, User user) {
         User updatedUser = userRepository.findById(id).orElse(null);
         if (updatedUser != null) {
-            updatedUser.setName(user.getName());
+            updatedUser.setUsername(user.getUsername());
             updatedUser.setEmail(user.getEmail());
             updatedUser.setPassword(user.getPassword());
+            updatedUser.setFirstname(user.getFirstname());
+            updatedUser.setLastname(user.getLastname());
             return userRepository.save(updatedUser);
         }
         return null;

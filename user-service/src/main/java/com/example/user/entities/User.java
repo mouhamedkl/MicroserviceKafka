@@ -4,31 +4,41 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+
 
 @Entity
-@Setter
-@Getter
-
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String name;
+    private String username;
+    private String firstname;
+    private String lastname;
+    private Boolean enabled;
     private String email;
     private String password;
 
-    public User() {
-    }
-
-    public User(Long id, String name, String email, String password) {
+    public User(Long id, String username, String firstname, String lastname, Boolean enabled, String email, String password) {
         this.id = id;
-        this.name = name;
+        this.username = username;
+        this.firstname = firstname;
+        this.lastname = lastname;
+        this.enabled = enabled;
         this.email = email;
         this.password = password;
+    }
+
+    public User(){
+
+    }
+
+    public Boolean getEnabled() {
+        return enabled;
+    }
+
+    public User setEnabled(Boolean enabled) {
+        this.enabled = enabled;
+        return this;
     }
 
     public Long getId() {
@@ -40,12 +50,30 @@ public class User {
         return this;
     }
 
-    public String getName() {
-        return name;
+    public String getUsername() {
+        return username;
     }
 
-    public User setName(String name) {
-        this.name = name;
+    public User setUsername(String username) {
+        this.username = username;
+        return this;
+    }
+
+    public String getFirstname() {
+        return firstname;
+    }
+
+    public User setFirstname(String firstname) {
+        this.firstname = firstname;
+        return this;
+    }
+
+    public String getLastname() {
+        return lastname;
+    }
+
+    public User setLastname(String lastname) {
+        this.lastname = lastname;
         return this;
     }
 
